@@ -4,6 +4,28 @@ import os
 import pickle
 import numpy as np
 import warnings
+import sqlite3
+
+def getFromDB(name):
+    conn = sqlite3.connect('hl.db')
+    try:
+        if conn:
+            command = "SELECT * FROM Customer WHERE cust_name = ?"
+            cursor = conn.execute(command, (name,))
+            profile = None
+            
+            for row in cursor:
+                profile = row
+            
+            conn.close()
+            return profile
+            
+    except sqlite3.ProgrammingError as ex:
+        print("Error: " + str(ex))
+
+def getFilePositionName(name):
+    path = [dI for dI in os.listdir('training-images') if os.path.isdir(os.path.join('training-images',dI))]
+    return str(path.index(name)) if name in path else '1'
 
 class FaceRecognizer(object):
     # Constructor...
@@ -20,7 +42,7 @@ class FaceRecognizer(object):
     def __del__(self): 
         self.video.release()
 
-    def get_recognizer_frame(self):
+    def get_frame(self):
         # Load Face Recogniser classifier
         fname = 'classifier.pkl'
         if os.path.isfile(fname):
@@ -84,6 +106,10 @@ class FaceRecognizer(object):
             right *= 4 
             bottom *= 4
             left *= 4
+
+            # id = getFromDB(name)
+            # cust_name = id[1] if id[1] is not None else name
+            # cust_id = str(id[0]) if id[0] is not None else '1'
             
             # Draw a box around the face
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
@@ -91,7 +117,8 @@ class FaceRecognizer(object):
             # Draw a label with a name below the face
             cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
             font = cv2.FONT_HERSHEY_COMPLEX
-            cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255,255,255), 1)
+            cv2.putText(frame, 'ID: ' +  getFilePositionName(name), (left + 6, bottom - 6), font, 1.0, (255,255,255), 1)
+            cv2.putText(frame, 'Name: ' + name,  (left + 6, bottom + 19), font, 1.0, (255,255,255), 1)
         
         ret, jpeg = cv2.imencode('.jpg', frame)
         return jpeg.tobytes()
