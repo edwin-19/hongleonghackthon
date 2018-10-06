@@ -4,10 +4,8 @@ body {
   width: 100% !important;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  margin:0;
+  margin: 0;
 }
-
-
 
 .backRight {
   position: absolute;
@@ -43,8 +41,9 @@ body {
   overflow: hidden;
   margin-left: 50%;
   position: absolute;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
 .topLayer {
   width: 200%;
   height: 100%;
@@ -89,13 +88,13 @@ button {
   padding: 10px 16px;
   width: auto;
   font-weight: 600;
-  text-transform:  uppercase;
+  text-transform: uppercase;
   font-size: 14px;
   color: #fff;
   line-height: 16px;
   letter-spacing: 0.5px;
   border-radius: 2px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
   border: 0;
   outline: 0;
   margin: 15px 15px 15px 0;
@@ -104,8 +103,9 @@ button {
 
 button:hover {
   background: #0288D1;
-  box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
+
 .off {
   background: none;
   color: #03A9F4;
@@ -117,11 +117,13 @@ button:hover {
   color: #03A9F4;
   box-shadow: none;
 }
+
 .left .off:hover {
   box-shadow: none;
   color: #03A9F4;
   background: #363A3D;
 }
+
 input {
   background: transparent;
   border: 0;
@@ -133,11 +135,44 @@ input {
   margin-top: 20px;
 }
 
-.face-cam{
+.face-cam {
   text-align: center;
 }
 
-.face-cam img{
-  width:500px;
-  margin-top:30%;
+.face-cam img {
+  width: 500px;
+  margin-top: 30%;
+}
+
+/* language.html */
+.lan_body {
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  height: 100vh;
+}
+
+.lan_container {
+  margin-top: 20%;
+}
+
+.lan_box {
+  color: white;
+  border: 1px solid white;
+  font-weight: bold;
+  font-size: 50px;
+  text-transform: uppercase;
+  height: 280px;
+  width: 280px;
+  padding: 100px 0;
+  border-radius: 5px;
+}
+
+.lan_box_bm {
+  padding: 65px 0;
+}
+
+.lan_box:hover {
+  background: black;
 }
