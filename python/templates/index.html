@@ -11,14 +11,15 @@
   <div id="back">
     <div class="backRight">
       <div class="face-cam">
-        <!-- <img src="{{ url_for('video_feed') }}"> -->
+        <img src="{{ url_for('static', filename='img/cam.png') }}">
       </div>
     </div>
 
     </div>
     <div class="backLeft">
       <div class="face-cam">
-        <img src="{{ url_for('video_feed') }}">
+        <!-- <img src="{{ url_for('video_feed') }}"> -->
+        <img src="{{ url_for('gesture_feed') }}">
       </div>
     </div>
 
@@ -54,8 +55,8 @@
           </div>
         </div>
       </div>
-      <!-- <script src="js/jquery.min.js"></script>
-      <script src="js/main.js"></script> -->
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 
