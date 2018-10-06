@@ -81,6 +81,7 @@ body {
   color: #03A9F4;
   font-weight: 300;
   font-size: 35px;
+  padding-left: 16px;
 }
 
 button {
@@ -140,8 +141,8 @@ input {
 }
 
 .face-cam img {
-  width: 500px;
-  margin-top: 30%;
+  width: 600px;
+  margin-top: 25%;
 }
 
 /* language.html */
@@ -175,4 +176,39 @@ input {
 
 .lan_box:hover {
   background: black;
+}
+
+/* first.html */
+.first_container{
+  margin-top:7%;
+}
+
+.f_box{
+  color: black;
+  border: 1px solid white;
+  background-color: white;
+  font-weight: bold;
+  font-size: 50px;
+  text-transform: uppercase;
+  height: 300px;
+  width: 400px;
+  padding: 70px 0;
+  border-radius: 5px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+}
+
+.f_box:hover{
+  border:6px solid #232355 ;
+}
+
+
+
+.f_box img{
+  width:100px;
+
+}
+
+.ff_box{
+  padding:30px 0;
 }
