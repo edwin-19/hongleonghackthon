@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+  <meta charset="UTF-8">
+
+</head>
+
+<body class="lan_body">
+  <div class="container first_container ">
+    <div class="row text-center">
+      <div class="col-lg-10 offset-lg-1 text-center bala">
+        Thank you.
+        <br/>
+        Please take your receipt.
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+      var audio = new Audio("{{ url_for('static', filename='img/atm-cash-machine-Sound-Effect.mp3') }}")
+      audio.play();
+
+      setTimeout(function() {
+        responsiveVoice.speak("Do you want to continue");
+      }, 13000)
+      
+      setTimeout(
+        function() {
+            console.log('time')
+
+            if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                var recognition = new webkitSpeechRecognition();
+
+                recognition.continuous = false;
+                recognition.interimResults = false;
+
+                recognition.lang = "en-US";
+                recognition.start();
+
+                recognition.onresult = function(e) {
+                    console.log(e.results[0][0].transcript)
+                    // document.getElementById('transcript').value
+                    //                         = e.results[0][0].transcript;
+                    recognition.stop();
+                    if (e.results[0][0].transcript == "yes"){
+                        window.open("first","_self")
+                    } else if(e.results[0][0].transcript == "no"){
+                        window.open("/","_self")
+                    }
+                    // if (document.getElementById('transcript').value == "english") {
+                    //     responsiveVoice.speak("Hello Jacky");
+                    // }
+                };
+
+                recognition.onerror = function(e) {
+                    recognition.stop();
+                }
+            }
+        }, 15000);
+  </script>
+</body>
+
+</html>

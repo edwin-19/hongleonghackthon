@@ -91,6 +91,10 @@
                 if(e.results[0][0].transcript == "account balance") {
                   window.open("balance","_self")
                 }
+
+                if(e.results[0][0].transcript == "withdrawal" || e.results[0][0].transcript == "withdraw") {
+                  window.open("withdrawal", "_self")
+                }
                 
                 // if (document.getElementById('transcript').value == "english") {
                 //     responsiveVoice.speak("Hello Jacky");

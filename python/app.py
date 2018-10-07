@@ -44,6 +44,10 @@ def gen_first():
 def get_balance():
     return render_template('balance.html')
 
+@app.route('/withdrawal')
+def get_withdrawal():
+    return render_template('tq.html')
+
 @app.route('/get_balance')
 def get_db_balance():
     conn = sqlite3.connect('hl.db')
