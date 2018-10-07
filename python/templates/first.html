@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+  <meta charset="UTF-8">
+
+</head>
+
+<body class="lan_body">
+  <div class="container first_container ">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="row">
+          <div class="col-lg-6 text-center">
+            <div class="f_box ff_box">
+              <img src="{{ url_for('static',filename='img/icons/cb.svg') }}"/>
+              <p>Account Balance</p>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="f_box">
+              <img src="{{ url_for('static',filename='img/icons/w.svg') }}"/>
+              <p>Withdrawal</p>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="row">
+          <div class="col-lg-6 text-center">
+            <div class="f_box">
+              <img src="{{ url_for('static',filename='img/icons/d.svg') }}"/>
+              <p>Deposit</p>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="f_box">
+              <img src="{{ url_for('static',filename='img/icons/pb.svg') }}"/>
+              <p>Pay Bill</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+
+    function read() {
+      responsiveVoice.speak("Account Balance");
+      responsiveVoice.speak("Withdrawal");
+      responsiveVoice.speak("Deposit");
+      responsiveVoice.speak("Bill Payment");
+    }
+    
+    choices = ["Account Balance", "Withdrawal", "Deposit", "Bill Payment"]
+
+    function startVoiceReader() {
+        read();
+        setTimeout(
+        function() 
+        {
+          //do something special
+          if (window.hasOwnProperty('webkitSpeechRecognition')) {
+            var recognition = new webkitSpeechRecognition();
+
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.lang = "en-US";
+            recognition.start();
+
+            recognition.onresult = function(e) {
+                console.log(e.results[0][0].transcript)
+                // document.getElementById('transcript').value
+                //                         = e.results[0][0].transcript;
+                recognition.stop();
+                // while (!choices.includes(e.results[0][0].transcript)){
+                //   console.log(e.results[0][0].transcript);
+                //   responsiveVoice.speak("No Match");
+                //   startVoiceReader();
+                // }
+                
+                if(e.results[0][0].transcript == "account balance") {
+                  window.open("balance","_self")
+                }
+                
+                // if (document.getElementById('transcript').value == "english") {
+                //     responsiveVoice.speak("Hello Jacky");
+                // }
+            };
+
+            recognition.onerror = function(e) {
+                recognition.stop();
+            }
+        }
+        }, 5000);
+        
+    }
+    
+    startVoiceReader()
+    
+  </script>
+</body>
+
+</html>

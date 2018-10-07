@@ -2,62 +2,80 @@
 <html>
 
 <head>
-  <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
-
+  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+  <meta charset="UTF-8">
 
 </head>
 
-<body>
-  <div id="back">
-    <div class="backRight">
-      <div class="face-cam">
-        <img src="{{ url_for('static', filename='img/cam.png') }}">
-      </div>
-    </div>
-
-    </div>
-    <div class="backLeft">
-      <div class="face-cam">
-        <!-- <img src="{{ url_for('video_feed') }}"> -->
-        <img src="{{ url_for('gesture_feed') }}">
-      </div>
-    </div>
-
-      <div id="slideBox">
-        <div class="topLayer">
-          <div class="left">
-            <div class="content">
-              <h2>Registration</h2>
-              <form method="post" onsubmit="return false;">
-                <!-- <div class="form-group">
-                  <input type="text" placeholder="username" />
-          </div> -->
-                  <div class="form-group"></div>
-                  <div class="form-group"></div>
-                  <div class="form-group"></div>
-              </form>
-              <button id="goLeft" class="off">Login</button>
-              <button>Sign up</button>
-            </div>
+<body class="lan_body">
+  <div class="container lan_container mid-center">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="row">
+        <div class="col-lg-4 text-center">
+          <div class="lan_box" onclick="location.href='login.html';">
+          english
           </div>
-          <div class="right">
-            <div class="content">
-              <h2>Login</h2>
-              <form method="post" onsubmit="return false;">
-                <!-- <div class="form-group">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" />
-          </div> -->
-                  <button id="goRight" class="off">Register</button>
-                  <button id="login" type="submit">Login</button>
-              </form>
-            </div>
+        </div>
+        <div class="col-lg-4 text-center">
+          <div class="lan_box">
+            中文
+          </div>
+        </div>
+        <div class="col-lg-4 text-center">
+          <div class="lan_box lan_box_bm">
+          bahasa malaysia
           </div>
         </div>
       </div>
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
 
+      responsiveVoice.speak("Please select a language");
+      function startVoiceReader() {
+        setTimeout(
+        function() 
+        {
+          //do something special
+          if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                var recognition = new webkitSpeechRecognition();
+
+                recognition.continuous = false;
+                recognition.interimResults = false;
+
+                recognition.lang = "en-US";
+                recognition.start();
+
+                recognition.onresult = function(e) {
+                    console.log(e.results[0][0].transcript)
+                    // document.getElementById('transcript').value
+                    //                         = e.results[0][0].transcript;
+                    recognition.stop();
+                    if (e.results[0][0].transcript == "English"){
+                        window.open("login","_self")
+                    }
+                    // if (document.getElementById('transcript').value == "english") {
+                    //     responsiveVoice.speak("Hello Jacky");
+                    // }
+                };
+
+                recognition.onerror = function(e) {
+                    recognition.stop();
+                }
+            }
+        }, 2000);
+            
+        }
+
+        startVoiceReader();
+  </script>
 </body>
 
 </html>
